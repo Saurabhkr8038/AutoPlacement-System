@@ -1,0 +1,7 @@
+package com.placement.model;
+
+public class Admin extends User {
+    public Admin(int id, String username, String password) {
+        super(id, username, password, "ADMIN");
+    }
+}
