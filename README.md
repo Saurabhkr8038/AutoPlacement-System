@@ -9,23 +9,25 @@ The **University Placement Automation System** is a Java-based desktop applicati
 
 ## Features
 *   **Student Management:** Add, Update, and Delete student profiles.
-*   **Smart Filtering:** Automatically shortlist students based on Company CGPA criteria.
+*   **Smart Filtering & Advanced Shortlisting:** Automatically shortlist students based on Company CGPA and advanced, weighted criteria (branch, backlogs, test scores, etc.).
 *   **Database Integration:** Persistent storage using MySQL.
 *   **Multithreading:** Background data loading for improved performance.
 *   **Role-Based Access:** Admin and Student modules.
+*   **Modern User Interface:** JavaFX-based, professional, and responsive UI for all modules.
 
 ## Technologies Used
 *   **Language:** Java (Core, OOP, Collections, Multithreading)
 *   **Database:** MySQL
 *   **Connectivity:** JDBC
-*   **Tools:** VS Code, Git
+*   **Tools:** VS Code, Git, JavaFX
 
 ## Project Structure
 *   `src/com/placement/model`: Entity classes (Student, Company, User).
 *   `src/com/placement/dao`: Data Access Objects for database operations.
 *   `src/com/placement/service`: Business logic for filtering and management.
 *   `src/com/placement/util`: Utility classes (DB Connection, Threading).
-*   `src/com/placement/main`: Application entry point.
+*   `src/com/placement/main`: Legacy CLI entry point.
+*   `src/com/placement/ui`: JavaFX UI classes (MainApp, LoginView, DashboardView).
 
 ## Setup Instructions
 1.  **Database Setup:**
@@ -35,11 +37,14 @@ The **University Placement Automation System** is a Java-based desktop applicati
 
 2.  **Compile and Run:**
     *   Open the project in VS Code or Eclipse.
-    *   Ensure the MySQL JDBC driver is added to the classpath.
-    *   Run `src/com/placement/main/Main.java`.
+    *   Ensure the MySQL JDBC driver and JavaFX SDK are added to the classpath/module-path.
+    *   To launch the modern UI, run `src/com/placement/ui/MainApp.java`.
+    *   The legacy CLI is still available via `src/com/placement/main/Main.java`.
 
 ## Requirements Fulfilled
 *   **OOP Implementation:** Polymorphism, Inheritance, Encapsulation, Interfaces.
 *   **Collections & Generics:** Used `ArrayList` and `HashMap`.
 *   **Multithreading:** Implemented `LoaderThread`.
 *   **Database Connectivity:** JDBC with `PreparedStatement`.
+*   **Modern UI:** JavaFX-based, cross-platform, and visually appealing interface.
+*   **Advanced Shortlisting:** Weighted scoring algorithm for smart candidate filtering.

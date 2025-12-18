@@ -5,13 +5,19 @@ public class Student extends User {
     private String email;
     private double cgpa;
     private String skills;
+    private String branch;
+    private int backlogs;
+    private double testScore;
 
-    public Student(int id, String username, String password, String name, String email, double cgpa, String skills) {
+    public Student(int id, String username, String password, String name, String email, double cgpa, String skills, String branch, int backlogs, double testScore) {
         super(id, username, password, "STUDENT");
         this.name = name;
         this.email = email;
         this.cgpa = cgpa;
         this.skills = skills;
+        this.branch = branch;
+        this.backlogs = backlogs;
+        this.testScore = testScore;
     }
 
     // Encapsulation: Getters and Setters
@@ -27,9 +33,18 @@ public class Student extends User {
     public String getSkills() { return skills; }
     public void setSkills(String skills) { this.skills = skills; }
 
+    public String getBranch() { return branch; }
+    public void setBranch(String branch) { this.branch = branch; }
+
+    public int getBacklogs() { return backlogs; }
+    public void setBacklogs(int backlogs) { this.backlogs = backlogs; }
+
+    public double getTestScore() { return testScore; }
+    public void setTestScore(double testScore) { this.testScore = testScore; }
+
     // Polymorphism: Overriding toString()
     @Override
     public String toString() {
-        return "Student [ID=" + id + ", Name=" + name + ", CGPA=" + cgpa + ", Skills=" + skills + "]";
+        return "Student [ID=" + id + ", Name=" + name + ", CGPA=" + cgpa + ", Skills=" + skills + ", Branch=" + branch + ", Backlogs=" + backlogs + ", Test Score=" + testScore + "]";
     }
 }

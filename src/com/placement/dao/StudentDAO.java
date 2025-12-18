@@ -18,7 +18,7 @@ public class StudentDAO implements PlacementOperations {
     @Override
     public void addStudent(Student student) {
         String userSql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-        String studentSql = "INSERT INTO students (student_id, name, email, cgpa, skills) VALUES (?, ?, ?, ?, ?)";
+        String studentSql = "INSERT INTO students (student_id, name, email, cgpa, skills, branch, backlogs, test_score) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         try {
             conn.setAutoCommit(false); // Transaction management
@@ -41,6 +41,9 @@ public class StudentDAO implements PlacementOperations {
             studentStmt.setString(3, student.getEmail());
             studentStmt.setDouble(4, student.getCgpa());
             studentStmt.setString(5, student.getSkills());
+            studentStmt.setString(6, student.getBranch());
+            studentStmt.setInt(7, student.getBacklogs());
+            studentStmt.setDouble(8, student.getTestScore());
             studentStmt.executeUpdate();
 
             conn.commit();
@@ -65,7 +68,7 @@ public class StudentDAO implements PlacementOperations {
     @Override
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-        String sql = "SELECT u.id, u.username, s.name, s.email, s.cgpa, s.skills FROM users u JOIN students s ON u.id = s.student_id";
+        String sql = "SELECT u.id, u.username, s.name, s.email, s.cgpa, s.skills, s.branch, s.backlogs, s.test_score FROM users u JOIN students s ON u.id = s.student_id";
         
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -78,7 +81,10 @@ public class StudentDAO implements PlacementOperations {
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getDouble("cgpa"),
-                    rs.getString("skills")
+                    rs.getString("skills"),
+                    rs.getString("branch"),
+                    rs.getInt("backlogs"),
+                    rs.getDouble("test_score")
                 ));
             }
         } catch (SQLException e) {
@@ -90,7 +96,7 @@ public class StudentDAO implements PlacementOperations {
     @Override
     public List<Student> shortlistCandidates(double minCgpa) {
         List<Student> shortlisted = new ArrayList<>();
-        String sql = "SELECT u.id, u.username, s.name, s.email, s.cgpa, s.skills FROM users u JOIN students s ON u.id = s.student_id WHERE s.cgpa >= ?";
+        String sql = "SELECT u.id, u.username, s.name, s.email, s.cgpa, s.skills, s.branch, s.backlogs, s.test_score FROM users u JOIN students s ON u.id = s.student_id WHERE s.cgpa >= ?";
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setDouble(1, minCgpa);
@@ -104,7 +110,10 @@ public class StudentDAO implements PlacementOperations {
                     rs.getString("name"),
                     rs.getString("email"),
                     rs.getDouble("cgpa"),
-                    rs.getString("skills")
+                    rs.getString("skills"),
+                    rs.getString("branch"),
+                    rs.getInt("backlogs"),
+                    rs.getDouble("test_score")
                 ));
             }
         } catch (SQLException e) {
